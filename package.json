@@ -10,7 +10,7 @@
     "test": "cross-env NODE_ENV=test jest --verbose --runInBand",
     "cypress:open": "cypress open",
     "build:ui": "(if exist dist rmdir /q /s dist) && cd ./frontend/ && npm run build && move dist ./../",
-    "test: e2e": "cypress run"
+    "test:e2e": "cypress run"
   },
   "author": "Sasha Usoskin",
   "license": "MIT",

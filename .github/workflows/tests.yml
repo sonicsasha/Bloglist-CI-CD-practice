@@ -1,0 +1,32 @@
+name: Run tests
+
+on:
+    push:
+        branches:
+            - master
+    pull_request:
+        branches: [master]
+        types: [opened, synchronize]
+
+jobs:
+    test_pipeline:
+        runs-on: ubuntu-20.04
+        steps:
+            - uses: actions/checkout@v3
+            - uses: actions/setup-node@v3
+            - name: Install backend dependencies
+              run: npm install
+            - name: Run backend unit tests
+              run: npm test
+            - name: Install frontend dependencies
+              run: npm install
+              working-directory: ./frontend
+            - name: Run frontend unit tests
+              run: npm test
+              working-directory: ./frontend
+            - name: Run end-to-end tests
+              uses: cypress-io/github-action@v6 
+              with:
+                command: npm run test:e2e
+                start: npm run start:test
+                wait-on: http://localhost:3003
