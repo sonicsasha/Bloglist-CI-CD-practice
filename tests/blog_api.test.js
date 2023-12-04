@@ -9,7 +9,6 @@ const User = require('../models/user')
 let userToken = null
 
 beforeEach(async () => {
-    jest.setTimeout(15000)
     await Blog.deleteMany({})
     await User.deleteMany({})
 
@@ -40,7 +39,7 @@ beforeEach(async () => {
             .send(blog)
             .expect(201)
             }
-})
+}, 15000)
 
 test('All blogs are returned correctly', async () => {
     const response = await api
