@@ -16,6 +16,10 @@ jobs:
             - uses: actions/setup-node@v3
             - name: Install backend dependencies
               run: npm install
+            - name: Start backend server
+              run: |
+                npm run start:test &
+                sleep 2
             - name: Run backend unit tests
               run: npm test
             - name: Install frontend dependencies
@@ -28,5 +32,4 @@ jobs:
               uses: cypress-io/github-action@v6 
               with:
                 command: npm run test:e2e
-                start: npm run start:test
                 wait-on: http://localhost:3003
