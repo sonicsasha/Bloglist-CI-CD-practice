@@ -11,6 +11,8 @@ on:
 jobs:
     test_pipeline:
         runs-on: ubuntu-20.04
+        env:
+            TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI }}
         steps:
             - uses: actions/checkout@v3
             - uses: actions/setup-node@v3
@@ -20,8 +22,6 @@ jobs:
               run: |
                 npm run start:test &
                 sleep 2
-              env:
-                TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI }}
             - name: Run backend unit tests
               run: npm test
             - name: Install frontend dependencies
