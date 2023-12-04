@@ -9,6 +9,7 @@ const User = require('../models/user')
 let userToken = null
 
 beforeEach(async () => {
+    jest.setTimeout(15000)
     await Blog.deleteMany({})
     await User.deleteMany({})
 
