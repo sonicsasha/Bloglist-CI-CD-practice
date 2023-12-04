@@ -165,7 +165,9 @@ describe('Note ', function() {
 
       cy.get('@Blog2').contains('view').click()
       cy.get('@Blog2').contains('like').click()
+      cy.wait(500)
       cy.get('@Blog2').contains('like').click()
+      cy.wait(500)
       cy.get('@Blog2').contains('like').click()
 
       cy.wait(10000)
