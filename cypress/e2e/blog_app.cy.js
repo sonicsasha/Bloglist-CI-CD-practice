@@ -47,6 +47,7 @@ Cypress.Commands.add('addBlog', (blogObject) => {
 describe('Note ', function() {
   this.beforeEach(function () {
     cy.request('POST', '/api/testing/reset')
+    cy.wait(1)
     cy.visit('')
   })
 
@@ -61,7 +62,7 @@ describe('Note ', function() {
       cy.createUser(testUser)
     })
 
-    it('succeeds with correct credentials', async function() {
+    it('succeeds with correct credentials', function() {
       cy.get('#usernameInput').type("tester1")
       cy.get('#passwordInput').type("secretword")
       cy.contains('login').click()
@@ -161,6 +162,8 @@ describe('Note ', function() {
       cy.get('@Blog2').contains('view').click()
       cy.get('@Blog2').contains('like').click()
       cy.get('@Blog2').contains('like').click()
+
+      cy.wait(1)
 
       cy.get('@Blog1').then(Blog1Element => {
         cy.get('@Blog2').then(Blog2Element => {
