@@ -20,6 +20,8 @@ jobs:
               run: |
                 npm run start:test &
                 sleep 2
+              env:
+                TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI }}
             - name: Run backend unit tests
               run: npm test
             - name: Install frontend dependencies
