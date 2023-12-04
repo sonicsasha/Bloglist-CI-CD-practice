@@ -153,19 +153,21 @@ describe('Note ', function() {
       cy.get('@Blog1').contains('view').click()
       cy.get('@Blog1').contains('like').click().as('ClickLikeButton')
 
+      cy.log('Checking like positions...')
+
       cy.get('@Blog1').then(Blog1Element => {
         cy.get('@Blog2').then(Blog2Element => {
           expect(Blog1Element.position().top).lessThan(Blog2Element.position().top)
         })
       })
 
-      console.log("First position check cleared")
+      cy.log("First position check cleared")
 
       cy.get('@Blog2').contains('view').click()
       cy.get('@Blog2').contains('like').click()
       cy.get('@Blog2').contains('like').click()
 
-      cy.wait(5000)
+      cy.wait(10000)
 
       cy.get('@Blog1').then(Blog1Element => {
         cy.get('@Blog2').then(Blog2Element => {
